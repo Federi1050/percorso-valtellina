@@ -8,7 +8,7 @@ numero2 = int(numero2)
 
 risultato = numero2 + numero1
 print("somma:",risultato)
-# direttamente nel print(numero1 + numero2)
+# direttamente nel print -> print(numero1 + numero2)
 risultato = numero1*numero2
 print("moltiplicazione:",risultato)
 risultato = numero1-numero2
