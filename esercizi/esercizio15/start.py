@@ -4,8 +4,6 @@ from Mezzo import Moto
 from Mezzo import Furgone
 from Garage import Garage
 
-
-
 g = Garage()
 
 a1 = Automobile(2020, "Fiat", "Diesel", 1600, 5)
