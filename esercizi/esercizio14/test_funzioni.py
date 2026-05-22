@@ -120,3 +120,13 @@ def test_tabellina(capsys):
     expected = [str(i * 2) for i in range(1, 10)]
 
     assert output == expected
+
+def test_secondo_maggiore():
+        assert secondo_maggiore([1, 5, 3, 4]) == 4
+        assert secondo_maggiore([10, 8, 6]) == 8
+        assert secondo_maggiore([7, 7, 5]) == 7
+
+def test_rimuovi_duplicati(self):
+    assert rimuovi_duplicati([1, 2, 2, 3, 1]) == [1, 2, 3]
+    assert rimuovi_duplicati(["a", "b", "a", "c"]) == ["a", "b", "c"]
+    assert rimuovi_duplicati([]) == []
