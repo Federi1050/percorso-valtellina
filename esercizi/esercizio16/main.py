@@ -17,7 +17,7 @@ def richiesta_api_fox():
     if resp.status_code == 200:
         return resp.json()
     else:
-        return {}
+        return {"Error":resp.status_code}
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)
