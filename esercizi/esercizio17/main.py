@@ -50,7 +50,6 @@ def mostra_floof():
 
 @app.route('/aggiungi_random')
 def aggiungi_random():
-    pass
     random = richiesta_api_fox()
     if random.get("Error"):
         return jsonify({"Error":True, "Error_code":random.get("Error")})
@@ -101,6 +100,15 @@ def richiesta_api_fox():
         return ris.json()
     else:
         return {"Error":True, "Error_code":ris.status_code}
+
+@app.route('/mostra_volpi')
+def mostra_volpi():
+    str = ""
+    results = db.session.query(Fox).all()
+    for f in results:
+        str = str + f"<img src='{f.image}'/>"
+
+    return str
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
