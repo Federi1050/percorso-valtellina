@@ -48,5 +48,39 @@ def pd_dataFrame():
     r = pdGen.generate_r_dataFrame(n)
     return jsonify(r.to_dict(orient='records'))
 
+@app.route('/test-post', methods=['POST'])
+def test_post():
+    data = request.json
+    return jsonify({"message":"Dati ricevuti","data":data})
+
+# crea una rotta che utilizzi metodo post. input json {n1 --> 30,n2-->40,op --> *}
+# output json che corrisponde calcolo
+# ese n1 30 n2 40 op * ->> {risultato:1200}
+@app.route('/mat_op', methods=['POST'])
+def mat_op():
+    data = request.json
+    n1 = data.get("n1")
+    n2 = data.get("n2")
+    op = data.get("op")
+    #controllo n1 e n2 sono numeri
+    if not isinstance(n1, int) or not isinstance(n2, int):
+        return jsonify({"mess":"non hai messo dei numeri"})
+    if op == '*':
+        pass
+        obj = {"risultato": data.get("n1") * data.get("n2")}
+    elif op == '/':
+        pass
+        obj = {"risultato": data.get("n1") / data.get("n2")}
+    elif op == '+':
+        pass
+        obj = {"risultato": data.get("n1") + data.get("n2")}
+    elif op == '-':
+        pass
+        obj = {"risultato": data.get("n1") - data.get("n2")}
+    else:
+        pass
+        obj = {"mess": "impossibile trovare operatore"}
+    return jsonify(obj)
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)
