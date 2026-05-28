@@ -7,7 +7,7 @@ class CSV_manager():
     def __init__(self):
         self.__csv_lista = []
 
-    def convert_csv_str_in_json(self, stringa):
+    def convert_json_in_csv(self, stringa):
         try:
             if not isinstance(stringa, str):
                 return {
@@ -25,6 +25,32 @@ class CSV_manager():
             risult_set = self.set_csv(result)
             # lista dove ogni elemento e' una dict -> riga del csv
 
+            if risult_set.get("success") == False:
+                return risult_set
+
+            return {
+                "success": True,
+                "data": result
+            }
+
+        except Exception as e:
+            return {
+                "success": False,
+                "errore": str(e)
+            }
+
+    def convert_file_in_csv(self, file):
+        try:
+            if not file:
+                return {
+                    "success": False,
+                    "errore": "Input non valido"
+                }
+            # leggi file e formattalo
+            df = pd.read_csv(file)
+            result = df.to_dict(orient="records")
+
+            risult_set = self.set_csv(result)
             if risult_set.get("success") == False:
                 return risult_set
 

@@ -25,10 +25,12 @@ def home():
 
 @app.route('/inserire-csv', methods=['POST'])
 def inserire_csv():
-    csv_testo = request.json["csv"]
-
-    result = csv_manager.convert_csv_str_in_json(csv_testo)
-
+    if request.is_json:
+        csv_testo = request.json["csv"]
+        result = csv_manager.convert_json_in_csv(csv_testo)
+    elif "file" in request.files:
+        file = request.files["file"]
+        result = csv_manager.convert_file_in_csv(file)
     return jsonify(result)
 
 @app.route('/mostra_csv_completo')
