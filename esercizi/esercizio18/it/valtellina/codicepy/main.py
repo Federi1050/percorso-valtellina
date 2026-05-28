@@ -28,8 +28,13 @@ def inserire_csv():
     csv_testo = request.json["csv"]
 
     result = csv_manager.convert_csv_str_in_json(csv_testo)
-    csv_manager.set_csv(result)
+
     return jsonify(result)
+
+@app.route('/mostra_csv_completo')
+def mostra_csv():
+    risposta = csv_manager.mostra_csv()
+    return jsonify(risposta)
 
 @app.route('/head')
 def head():
